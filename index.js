@@ -1,11 +1,13 @@
+require("dotenv").config()
 const express = require("express");
 const authRouter = require("./routers/auth.route");
+const indexRouter = require("./routers/index.route");
 const app = express()
 app.set('view engine', 'ejs');
 app.use(express.static("public"))
 app.use(express.urlencoded({ extended: true }))
 app.use(express.static("uploads"))
-const PORT = 8000;
+const PORT = process.env.PORT
 
 // app.get("/", (req, res) => {
 //     return res.render("index")
@@ -18,6 +20,7 @@ const PORT = 8000;
 // })
 
 app.use("/auth", authRouter)
+app.use("/", indexRouter)
 
 
 
