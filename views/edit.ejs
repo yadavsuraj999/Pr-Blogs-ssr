@@ -1,4 +1,4 @@
-<%- include("partials/start") %>
+<%- include("partials/start.ejs") %>
     <aside
         class="sidenav navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-3   bg-gradient-dark"
         id="sidenav-main">
@@ -7,7 +7,7 @@
                 aria-hidden="true" id="iconSidenav"></i>
             <a class="navbar-brand m-0" href=" https://demos.creative-tim.com/material-dashboard/pages/dashboard "
                 target="_blank">
-                <img src="./assets/img/logo-ct.png" class="navbar-brand-img h-100" alt="main_logo">
+                <img src="/assets/img/logo-ct.png" class="navbar-brand-img h-100" alt="main_logo">
                 <span class="ms-1 font-weight-bold text-white">Material Dashboard 2</span>
             </a>
         </div>
@@ -95,7 +95,8 @@
             <div class="mx-3">
                 <a class="btn bg-gradient-primary mt-4 w-100"
                     href="https://www.creative-tim.com/product/material-dashboard-pro?ref=sidebarfree"
-                    type="button">Upgrade to pro</a>
+                    type="button">Upgrade to
+                    pro</a>
             </div>
         </div>
     </aside>
@@ -228,91 +229,58 @@
             </div>
         </nav>
         <!-- End Navbar -->
+
         <div class="container-fluid py-4">
             <div class="row">
-                <div class="col-12">
-                    <div class="card mb-4">
-                        <div class="card-header pb-0">
-                            <h6>All Blogs</h6>
-                        </div>
-                        <div class="card-body px-0 pt-0 pb-2">
-                            <div class="table-responsive p-0">
-                                <table class="table align-items-center mb-0">
-                                    <thead class="text-center">
-                                        <tr>
-                                            <th
-                                                class="text-uppercase text-secondary text-xs font-weight-bolder opacity-7">
-                                                No</th>
-                                            <th
-                                                class="text-uppercase text-secondary text-xs font-weight-bolder opacity-7 ps-2">
-                                                Title</th>
-                                            <!-- <th
-                                                class="text-uppercase text-secondary text-xs font-weight-bolder opacity-7 ps-2">
-                                                Description</th> -->
-                                            <th
-                                                class="text-uppercase text-secondary text-xs font-weight-bolder opacity-7 ps-2">
-                                                Tags</th>
-                                            <th
-                                                class="text-uppercase text-secondary text-xs font-weight-bolder opacity-7 ps-2">
-                                                Image</th>
-                                            <th
-                                                class="text-uppercase text-secondary text-xs font-weight-bolder opacity-7 ps-2">
-                                                Action</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody class="text-center">
-                                        <% if (!blogs || blogs.length===0) { %>
-                                            <tr>
-                                                <td colspan="6" class="text-center">No blogs found</td>
-                                            </tr>
-                                            <% } else { %>
-                                                <% blogs.forEach((blog, index)=> { %>
-                                                    <tr>
-                                                        <td>
-                                                            <p class="text-xs font-weight-bold mb-0">
-                                                                <%= index + 1 %>
-                                                            </p>
-                                                        </td>
-                                                        <td>
-                                                            <p class="text-xs font-weight-bold mb-0">
-                                                                <%= blog.blogTitle %>
-                                                            </p>
-                                                        </td>
-                                                        <!-- <td>
-                                                            <p class="text-xs text-secondary mb-0">
-                                                                <%= blog.blogDescription %>
-                                                            </p>
-                                                        </td> -->
-                                                        <td>
-                                                            <span class="badge badge-sm bg-gradient-primary">
-                                                                <%= blog.blogTags %>
-                                                            </span>
-                                                        </td>
-                                                        <td>
-                                                            <img src="/<%= blog.blogImage %>"
-                                                                class="avatar avatar-sm rounded-circle me-2"
-                                                                alt="blog image">
-                                                        </td>
-                                                        <td class="text-center">
-                                                            <a href="/edit-blog/<%= blog._id %>"
-                                                                class="text-secondary font-weight-bold text-xs me-3">Edit</a>
-                                                            <a href="/delete-blog/<%= blog._id %>"
-                                                                class="text-danger font-weight-bold text-xs">Delete</a>
-                                                        </td>
-                                                    </tr>
-                                                    <% }) %>
-                                                        <% } %>
-                                    </tbody>
-                                </table>
-
+                <div class="col-lg-8 col-md-10 mx-auto">
+                    <div class="card">
+                        <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
+                            <div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3">
+                                <h6 class="text-white text-capitalize ps-3">Add New Blog</h6>
                             </div>
+                        </div>
+
+                        <div class="card-body px-4 pb-4">
+                            <form action="/edit-blog/<%= blog._id %>" method="POST" enctype="multipart/form-data">
+                                <!-- Blog Title -->
+                                <label class="form-label">Blog Title</label>
+                                <div class="input-group input-group-outline mb-4">
+                                    <input type="text" name="blogTitle" class="form-control"
+                                        value="<%= blog.blogTitle %>" required>
+                                </div>
+
+                                <!-- Blog Description -->
+                                <label class="form-label">Blog Description</label>
+                                <div class="input-group input-group-outline mb-4">
+                                    <textarea name="blogDescription" class="form-control" rows="5"
+                                        required><%= blog.blogDescription %></textarea>
+                                </div>
+
+                                <!-- Blog Tags -->
+                                <label class="form-label">Tags (comma separated)</label>
+                                <div class="input-group input-group-outline mb-4">
+                                    <input type="text" name="blogTags" class="form-control" value="<%= blog.blogTags %>"
+                                        required>
+                                </div>
+
+                                <!-- Blog Image (Preview if exists) -->
+                                <label class="form-label">Blog Image</label>
+                                <div class="mb-4">
+                                    <input type="file" name="blogImage" class="form-control border border-1">
+                                </div>
+
+                                <div class="text-end">
+                                    <button type="submit" class="btn bg-gradient-primary">
+                                        <i class="bi bi-pencil me-1"></i> Update Blog
+                                    </button>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
 
+
     </main>
-
-
-    <%- include("partials/end") %>
+    <%- include("partials/end.ejs") %>
