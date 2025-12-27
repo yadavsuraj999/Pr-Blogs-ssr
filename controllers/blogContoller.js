@@ -107,8 +107,24 @@ const editBlog = async (req, res) => {
     }
 }
 
+const quickBlog = async (req, res) => {
+    try {
+        const { id } = req.params;
+
+        const blog = await BlogModel.findById(id);
+        return res.render("quickView", { blog });
+
+    } catch (error) {
+        console.error(error);
+    }
+};
 
 
-module.exports = { index, blogForm, addBlog, viewBlog, deleteBlog, editBlogForm, editBlog };
+
+
+
+
+
+module.exports = { index, blogForm, addBlog, viewBlog, deleteBlog, editBlogForm, editBlog, quickBlog };
 
 

@@ -1,4 +1,4 @@
-<%- include("partials/start.ejs") %>
+<%- include("partials/start") %>
     <aside
         class="sidenav navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-3   bg-gradient-dark"
         id="sidenav-main">
@@ -7,7 +7,7 @@
                 aria-hidden="true" id="iconSidenav"></i>
             <a class="navbar-brand m-0" href=" https://demos.creative-tim.com/material-dashboard/pages/dashboard "
                 target="_blank">
-                <img src="/assets/img/logo-ct.png" class="navbar-brand-img h-100" alt="main_logo">
+                <img src="./assets/img/logo-ct.png" class="navbar-brand-img h-100" alt="main_logo">
                 <span class="ms-1 font-weight-bold text-white">Material Dashboard 2</span>
             </a>
         </div>
@@ -101,7 +101,6 @@
         </div>
     </aside>
     <main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg ">
-        <!-- Navbar -->
         <nav class="navbar navbar-main navbar-expand-lg px-0 mx-4 shadow-none border-radius-xl" id="navbarBlur"
             navbar-scroll="true">
             <div class="container-fluid py-1 px-3">
@@ -231,56 +230,54 @@
         <!-- End Navbar -->
 
         <div class="container-fluid py-4">
-            <div class="row">
-                <div class="col-lg-8 col-md-10 mx-auto">
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+
                     <div class="card">
-                        <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
-                            <div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3">
-                                <h6 class="text-white text-capitalize ps-3">Add New Blog</h6>
+                        
+
+                        <div class="card-body">
+
+                            <div class="text-center mb-4">
+                                <img src="/<%= blog.blogImage %>" class="img-fluid border-radius-lg"
+                                    style="max-height: 300px;" alt="Blog Image">
                             </div>
+
+                            <div class="card-header text-center">
+                                <h4 class="mb-0">
+                                    <%= blog.blogTitle %>
+                                </h4>
+                                <span class="badge bg-gradient-primary mt-2">
+                                    <%= blog.blogTags %>
+                                </span>
+                            </div>
+                            <p class="text-sm text-secondary">
+                                <%= blog.blogDescription %>
+                            </p>
+
                         </div>
 
-                        <div class="card-body px-4 pb-4">
-                            <form action="/edit-blog/<%= blog._id %>" method="POST" enctype="multipart/form-data">
-                                <!-- Blog Title -->
-                                <label class="form-label">Blog Title</label>
-                                <div class="input-group input-group-outline mb-4">
-                                    <input type="text" name="blogTitle" class="form-control"
-                                        value="<%= blog.blogTitle %>" required>
-                                </div>
 
-                                <!-- Blog Description -->
-                                <label class="form-label">Blog Description</label>
-                                <div class="input-group input-group-outline mb-4">
-                                    <textarea name="blogDescription" class="form-control" rows="5"
-                                        required><%= blog.blogDescription %></textarea>
-                                </div>
-
-                                <!-- Blog Tags -->
-                                <label class="form-label">Tags (comma separated)</label>
-                                <div class="input-group input-group-outline mb-4">
-                                    <input type="text" name="blogTags" class="form-control" value="<%= blog.blogTags %>"
-                                        required>
-                                </div>
-
-                                <!-- Blog Image (Preview if exists) -->
-                                <label class="form-label">Blog Image</label>
-                                <div class="mb-4">
-                                    <input type="file" name="blogImage" class="form-control border border-1">
-                                </div>
-
-                                <div class="text-end">
-                                    <button type="submit" class="btn bg-gradient-primary">
-                                        <i class="bi bi-pencil me-1"></i> Update Blog
-                                    </button>
-                                </div>
-                            </form>
+                        <div class="card-footer text-center">
+                            <a href="/edit-blog/<%= blog._id %>" class="btn btn-secondary btn-sm">
+                                Edit
+                            </a>
+                            <a href="/delete-blog/<%= blog._id %>" class="btn btn-danger btn-sm">
+                                Delete
+                            </a>
+                            <a href="/" class="btn btn-outline-primary btn-sm">
+                                Back
+                            </a>
                         </div>
+
                     </div>
+
                 </div>
             </div>
         </div>
 
 
     </main>
-    <%- include("partials/end.ejs") %>
+
+
+    <%- include("partials/end") %>

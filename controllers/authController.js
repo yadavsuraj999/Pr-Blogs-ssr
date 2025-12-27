@@ -30,7 +30,7 @@ const signinUser = async (req, res) => {
             maxAge: 24 * 60 * 60 * 1000,
             httpOnly: true
         })
-        res.redirect("/");
+        res.redirect("/admin/view-blog");
     } catch (error) {
         console.log(error);
     }
