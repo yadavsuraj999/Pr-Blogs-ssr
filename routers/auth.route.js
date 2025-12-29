@@ -6,6 +6,6 @@ router.get("/signin", getSignIn)
 router.get("/signup", getSignUp)
 router.post("/signup", signUpUser)
 router.post("/signin", signinUser)
-router.post("/log-out", logOut)
+router.get("/log-out", logOut)
 
 module.exports = router

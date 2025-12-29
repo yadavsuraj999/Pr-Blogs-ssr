@@ -121,7 +121,7 @@
                     </div>
                     <ul class="navbar-nav  justify-content-end">
                         <li class="nav-item d-flex align-items-center">
-                             <a href="/" class="nav-link text-body font-weight-bold px-0">
+                             <a href="/auth/log-out" class="nav-link text-body font-weight-bold px-0">
                                 <i class="fa fa-user me-sm-1"></i>
                                 <span class="d-sm-inline d-none">Log Out</span>
                             </a>
@@ -294,11 +294,11 @@
                                                                 alt="blog image">
                                                         </td>
                                                         <td class="text-center">
-                                                            <a href="/view-blog/<%= blog._id %>"
+                                                            <a href="/admin/view-blog/<%= blog._id %>"
                                                                 class="text-primary font-weight-bold text-xs me-3">View</a>
-                                                            <a href="/edit-blog/<%= blog._id %>"
+                                                            <a href="/admin/edit-blog/<%= blog._id %>"
                                                                 class="text-secondary font-weight-bold text-xs me-3">Edit</a>
-                                                            <a href="/delete-blog/<%= blog._id %>"
+                                                            <a href="/admin/delete-blog/<%= blog._id %>"
                                                                 class="text-danger font-weight-bold text-xs">Delete</a>
                                                         </td>
                                                     </tr>

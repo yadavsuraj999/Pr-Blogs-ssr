@@ -32,11 +32,10 @@ const viewBlog = async (req, res) => {
 
 const addBlog = async (req, res) => {
     try {
-        console.log(req.body)
         const { path } = req.file;
         const blogData = new BlogModel({ ...req.body, blogImage: path });
         await blogData.save();
-        res.redirect("/view-blog");
+        res.redirect("/admin/view-blog");
     } catch (error) {
         console.log(error)
     }
@@ -57,9 +56,9 @@ const deleteBlog = async (req, res) => {
                 }
             });
             await BlogModel.findByIdAndDelete(id);
-            res.redirect("/view-blog");
+            res.redirect("/admin/view-blog");
         } else {
-            res.redirect("/view-blog");
+            res.redirect("/admin/view-blog");
         }
     } catch (error) {
         console.log(error);
@@ -71,12 +70,11 @@ const editBlogForm = async (req, res) => {
         const { id } = req.params;
         const blog = await BlogModel.findById(id);
         if (!blog) {
-            return res.redirect("/view-blog");
+            return res.redirect("/admin/view-blog");
         }
         res.render("edit", { blog });
     } catch (error) {
         console.log(error);
-        res.redirect("/view-blog");
     }
 };
 
@@ -100,10 +98,10 @@ const editBlog = async (req, res) => {
         }
 
         await BlogModel.findByIdAndUpdate(id, updatedData);
-        res.redirect("/view-blog");
+        res.redirect("/admin/view-blog");
     } catch (error) {
         console.log(error);
-        res.redirect("/view-blog");
+        res.redirect("/admin/view-blog");
     }
 }
 

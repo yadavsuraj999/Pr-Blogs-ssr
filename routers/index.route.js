@@ -1,5 +1,5 @@
 const express = require("express");
-const { index, blogForm, addBlog, viewBlog, deleteBlog, editBlogForm, editBlog, quickBlog, homePage } = require("../controllers/blogContoller");
+const { index, blogForm, addBlog, viewBlog, deleteBlog, editBlogForm, editBlog, quickBlog } = require("../controllers/blogContoller");
 const upload = require("../middleware/multer");
 const router = express.Router();
 

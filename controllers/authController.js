@@ -37,7 +37,7 @@ const signinUser = async (req, res) => {
 }
 const logOut = (req, res) => {
     res.clearCookie("check");
-    res.redirect("/auth");
+    res.redirect("/");
 }
 
 module.exports = { getSignUp, getSignIn, signUpUser, signinUser, logOut }
