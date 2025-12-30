@@ -7,7 +7,7 @@
                 aria-hidden="true" id="iconSidenav"></i>
             <a class="navbar-brand m-0" href=" https://demos.creative-tim.com/material-dashboard/pages/dashboard "
                 target="_blank">
-                <img src="./assets/img/logo-ct.png" class="navbar-brand-img h-100" alt="main_logo">
+                <img src="/assets/img/logo-ct.png" class="navbar-brand-img h-100" alt="main_logo">
                 <span class="ms-1 font-weight-bold text-white">Material Dashboard 2</span>
             </a>
         </div>
@@ -243,29 +243,23 @@
                                     style="max-height: 300px;" alt="Blog Image">
                             </div>
 
-                            <div class="card-header text-center">
+                            <div class="card-header ">
                                 <h4 class="mb-0">
                                     <%= blog.blogTitle %>
                                 </h4>
                                 <span class="badge bg-gradient-primary mt-2">
                                     <%= blog.blogTags %>
                                 </span>
+                                <p class="text-sm text-secondary">
+                                    <%= blog.blogDescription %>
+                                </p>
                             </div>
-                            <p class="text-sm text-secondary">
-                                <%= blog.blogDescription %>
-                            </p>
 
                         </div>
 
 
                         <div class="card-footer text-center">
-                            <a href="/edit-blog/<%= blog._id %>" class="btn btn-secondary btn-sm">
-                                Edit
-                            </a>
-                            <a href="/delete-blog/<%= blog._id %>" class="btn btn-danger btn-sm">
-                                Delete
-                            </a>
-                            <a href="/" class="btn btn-outline-primary btn-sm">
+                            <a href="/admin/view-blog" class="btn btn-outline-primary btn-sm">
                                 Back
                             </a>
                         </div>
